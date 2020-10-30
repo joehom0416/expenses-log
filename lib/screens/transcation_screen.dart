@@ -2,7 +2,8 @@ import 'package:expense_log/models/transactions.dart';
 import 'package:expense_log/widgets/FABBottomAppBar.dart';
 import 'package:expense_log/widgets/transaction_item.dart';
 import 'package:flutter/material.dart';
-
+import 'package:grouped_list/grouped_list.dart';
+import 'package:intl/intl.dart';
 class TransactionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class TransactionScreen extends StatelessWidget {
             ),
             // monthly navigation
             Material(
-              color: Colors.blue,            
+              color: Colors.blue,
               child: Padding(
                 padding: const EdgeInsets.all(6.0),
                 child: Row(
@@ -67,11 +68,30 @@ class TransactionScreen extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                  itemCount: Transactions().transactions.length,
-                  itemBuilder: (context, i) {
-                    return TransactionItem(Transactions().transactions[i]);
-                  }),
+              child: GroupedListView(
+                elements: Transactions().transactions,
+                groupHeaderBuilder: (Transaction data)=>Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        DateFormat('dd MMM').format(data.date),
+                        style: TextStyle(fontWeight: FontWeight.w800),
+                      ),
+                      
+                    ],
+                  ),
+                ),
+                groupBy: (Transaction element) => element.date,
+                itemBuilder: (context, Transaction data) {
+                  return TransactionItem(data);
+                },
+                itemComparator: (Transaction item1, Transaction item2) =>
+                    item1.date.compareTo(item2.date),
+                useStickyGroupSeparators: true,
+                order: GroupedListOrder.DESC,
+              ),
             ),
           ],
         ),
