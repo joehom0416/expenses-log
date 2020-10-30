@@ -4,6 +4,7 @@ import 'package:expense_log/widgets/transaction_item.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:intl/intl.dart';
+
 class TransactionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class TransactionScreen extends StatelessWidget {
               ),
             ),
             // monthly navigation
-            Material(
+            Container(
               color: Colors.blue,
               child: Padding(
                 padding: const EdgeInsets.all(6.0),
@@ -70,8 +71,8 @@ class TransactionScreen extends StatelessWidget {
             Expanded(
               child: GroupedListView(
                 elements: Transactions().transactions,
-                groupHeaderBuilder: (Transaction data)=>Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                groupHeaderBuilder: (Transaction data) => Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -79,7 +80,6 @@ class TransactionScreen extends StatelessWidget {
                         DateFormat('dd MMM').format(data.date),
                         style: TextStyle(fontWeight: FontWeight.w800),
                       ),
-                      
                     ],
                   ),
                 ),
