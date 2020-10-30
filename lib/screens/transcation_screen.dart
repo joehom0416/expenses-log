@@ -26,7 +26,7 @@ class TransactionScreen extends StatelessWidget {
               color: Colors.blue,
               child: Row(
                 children: [
-                  summaryHeader(context, "Total", "RM309.23"),
+                  summaryHeader(context, "Total", "RM 309.23"),
                   Padding(
                     padding: EdgeInsets.only(right: 8),
                     child: Container(
@@ -35,7 +35,7 @@ class TransactionScreen extends StatelessWidget {
                       color: Colors.white.withOpacity(0.8),
                     ),
                   ),
-                  summaryHeader(context, "Budgets", "RM299.23"),
+                  summaryHeader(context, "Budgets", "RM 1000"),
                 ],
               ),
             ),
