@@ -1,6 +1,6 @@
 # expense_log
 
-financial application
+financial application, practice on Flutter UI, no any logic code.
 
 ## Getting Started
 
